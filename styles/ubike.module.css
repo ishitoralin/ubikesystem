@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap');
+
+/* navbar */
+.navbarContainer {
+    width: 100%;
+    height: 104px;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    border-bottom: 1px solid #EBEBEB;
+    padding: 0 124px;
+}
+
+.navbarLogo{
+    width: 95px;
+    height: 95px;    
+    /* border: 2px solid red; */
+    overflow: hidden;
+    cursor: pointer;
+}
+.navbarList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+    margin-right: auto;
+    font-size: 18px;
+    line-height: 24px;
+    color: #677510;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+.navbarList>div:not(:last-child){
+    margin-right: 40px;
+}
+
+.navbarList>div:hover{
+    color: #B5CC22;
+    cursor: pointer;
+}
+
+.navbarloginIcon{
+    width: 85px;
+    height: 50px;
+    background-color: #B5CC22;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;    
+}
+
+.navbarloginIcon:hover{
+    cursor: pointer;
+}
+
+
+/* body */
+.bodyContainer{
+    padding: 0 124px;
+}
+
+.bodyTitle{
+    padding: 25px 0;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: 4.32px;
+    font-weight: 700;
+    color: #B5CC22;
+}
+
+.searchPart{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
