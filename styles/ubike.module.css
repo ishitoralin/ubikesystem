@@ -73,7 +73,11 @@
 }
 
 .searchPart{
+    height: 64px;
     display: flex;
     /* justify-content: center; */
     align-items: center;
+}
+.searchPart>div>div>div{
+    padding: 0;
 }
