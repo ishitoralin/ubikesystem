@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '@/styles/ubike.module.css'
 import { styled, alpha } from '@mui/material/styles'
+import Image from 'next/image'
 
 import Box from '@mui/material/Box'
 import MenuItem from '@mui/material/MenuItem'
@@ -11,6 +12,13 @@ import Select from '@mui/material/Select'
 import Checkbox from '@mui/material/Checkbox'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell, { tableCellClasses } from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
 export default function Body() {
   const [age, setAge] = React.useState('')
 
@@ -18,6 +26,7 @@ export default function Body() {
     setAge(event.target.value)
   }
 
+  // search
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: 8,
@@ -52,6 +61,7 @@ export default function Body() {
     },
   }))
 
+  // form
   const styleForFormGourp = {
     fontFamily: 'Noto Sans TC, sans-serif',
     fontWeight: '400',
@@ -74,6 +84,19 @@ export default function Body() {
     marginRight: '16px',
     marginBottom: '15px',
   }
+
+  // table
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: '#B5CC22',
+      color: 'white',
+      fontSize: 18,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 16,
+    },
+  }))
+
   return (
     <>
       <div className={styles.bodyContainer}>
@@ -269,7 +292,65 @@ export default function Body() {
             </div>
           </div>
           {/* right part for photo */}
-          <div>photo</div>
+          <div className={styles.photoContainer}>
+            <Image
+              src="/Frame.png"
+              alt="Ubike Logo"
+              width="502"
+              height="172"
+            ></Image>
+          </div>
+        </div>
+        <div className={styles.tableContainer}>
+          <div className={styles.tableHead}>
+            <div>縣市</div>
+            <div>區域</div>
+            <div>站點資訊</div>
+            <div>可借車輛</div>
+            <div>可還空位</div>
+          </div>
+          <div className={styles.tableBodyOdd}>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+          </div>
+          <div className={styles.tableBodyEven}>
+            <div>1</div>
+            <div>23</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+          </div>
+          <div className={styles.tableBodyOdd}>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+          </div>
+          <div className={styles.tableBodyEven}>
+            <div>1</div>
+            <div>23</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+          </div>
+          <div className={styles.tableBodyOdd}>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+          </div>
+          <div className={styles.tableBodyEven}>
+            <div>1</div>
+            <div>23</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+          </div>
         </div>
       </div>
     </>
