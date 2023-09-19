@@ -8,6 +8,9 @@ import FormControl from '@mui/material/FormControl'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
 import Select from '@mui/material/Select'
+import Checkbox from '@mui/material/Checkbox'
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
 export default function Body() {
   const [age, setAge] = React.useState('')
 
@@ -49,6 +52,28 @@ export default function Body() {
     },
   }))
 
+  const styleForFormGourp = {
+    fontFamily: 'Noto Sans TC, sans-serif',
+    fontWeight: '400',
+    fontSize: '18px',
+    lineHeight: '24px',
+  }
+
+  const styleForCheckBtn = {
+    fontSize: '18px',
+    fontFamily: 'Noto Sans TC, sans-serif',
+    fontWeight: '400',
+    lineHeight: '24px',
+    color: '#323232',
+  }
+
+  const formControlLabel = {
+    height: '40px',
+    width: '99px',
+    margin: 0,
+    marginRight: '16px',
+    marginBottom: '15px',
+  }
   return (
     <>
       <div className={styles.bodyContainer}>
@@ -104,6 +129,147 @@ export default function Body() {
             </SearchIconWrapper>
             <StyledInputBase placeholder="Search…" />
           </Search>
+        </div>
+        <div className={styles.checkPart}>
+          {/* left part for btn group */}
+          <div>
+            {/* check all */}
+            <FormControlLabel
+              control={<Checkbox />}
+              label={
+                <Box component="div" sx={styleForCheckBtn}>
+                  全部勾選
+                </Box>
+              }
+              sx={{
+                height: '40px',
+                width: '117px',
+                margin: 0,
+                marginBottom: '15px',
+              }}
+            />
+            {/* btn group */}
+            <div className={styles.buttonGroup}>
+              <FormGroup sx={styleForFormGourp}>
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+              </FormGroup>
+              <FormGroup sx={styleForFormGourp}>
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+              </FormGroup>
+              <FormGroup sx={styleForFormGourp}>
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+              </FormGroup>
+              <FormGroup sx={styleForFormGourp}>
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      松山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+              </FormGroup>
+            </div>
+          </div>
+          {/* right part for photo */}
+          <div>photo</div>
         </div>
       </div>
     </>
