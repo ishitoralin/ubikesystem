@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '@/styles/ubike.module.css'
 import { styled, alpha } from '@mui/material/styles'
 import Image from 'next/image'
@@ -21,7 +21,9 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 export default function Body() {
   const [age, setAge] = React.useState('')
-
+  const [data, setData] = useState([])
+  const [cities, setCities] = useState([])
+  console.log(cities)
   const handleChange = (event) => {
     setAge(event.target.value)
   }
@@ -61,6 +63,27 @@ export default function Body() {
     },
   }))
 
+  const styleForSelect = {
+    width: 175,
+    height: 40,
+    backgroundColor: '#F6F6F6',
+    fontFamily: 'Noto Sans TC, sans-serif',
+    fontSize: '18px',
+    fontWeight: '500',
+    textAlign: 'center',
+    borderRadius: '8px',
+    boxShadow: 'none',
+
+    // 強制取消邊框顏色
+    '.MuiOutlinedInput-notchedOutline': { border: 0 },
+
+    // 強制取消focus邊框顏色
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      opacity: 0, //讓邊框變透明
+      borderRadius: '8px',
+    },
+  }
+
   // form
   const styleForFormGourp = {
     fontFamily: 'Noto Sans TC, sans-serif',
@@ -84,23 +107,25 @@ export default function Body() {
     marginRight: '16px',
     marginBottom: '15px',
   }
+  const url =
+    'https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json'
+  useEffect(() => {
+    fetch(url)
+      .then((r) => r.json())
+      .then((data) => {
+        setData(data)
 
-  // table
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: '#B5CC22',
-      color: 'white',
-      fontSize: 18,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 16,
-    },
-  }))
+        const uniqueCities = [...new Set(data.map((item) => item.sarea))]
+        setCities(uniqueCities)
+      })
+  }, [])
 
   return (
     <>
       <div className={styles.bodyContainer}>
+        {/* title */}
         <div className={styles.bodyTitle}>站點資訊</div>
+        {/* dropdown */}
         <div className={styles.searchPart}>
           {/* 搜尋區域下拉式選單 */}
           <Box
@@ -117,31 +142,16 @@ export default function Body() {
                 value={age}
                 onChange={handleChange}
                 displayEmpty
-                sx={{
-                  width: 175,
-                  height: 40,
-                  backgroundColor: '#F6F6F6',
-                  fontFamily: 'Noto Sans TC, sans-serif',
-                  fontSize: '18px',
-                  fontWeight: '500',
-                  textAlign: 'center',
-                  borderRadius: '8px',
-                  boxShadow: 'none',
-
-                  // 強制取消邊框顏色
-                  '.MuiOutlinedInput-notchedOutline': { border: 0 },
-
-                  // 強制取消focus邊框顏色
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    opacity: 0, //讓邊框變透明
-                    borderRadius: '8px',
-                  },
-                }}
+                sx={styleForSelect}
               >
                 <MenuItem value="">請選擇站點</MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {data.map((v, i) => {
+                  return (
+                    <MenuItem value={i + 1} key={i}>
+                      {v.ar}
+                    </MenuItem>
+                  )
+                })}
               </Select>
             </FormControl>
           </Box>
@@ -153,6 +163,7 @@ export default function Body() {
             <StyledInputBase placeholder="Search…" />
           </Search>
         </div>
+        {/* checkgroup and photo */}
         <div className={styles.checkPart}>
           {/* left part for btn group */}
           <div>
@@ -173,12 +184,13 @@ export default function Body() {
             />
             {/* btn group */}
             <div className={styles.buttonGroup}>
+            {/* {cities.map(()=>{})} */}
               <FormGroup sx={styleForFormGourp}>
                 <FormControlLabel
                   control={<Checkbox />}
                   label={
                     <Box component="div" sx={styleForCheckBtn}>
-                      松山區
+                      大安區
                     </Box>
                   }
                   sx={formControlLabel}
@@ -187,7 +199,65 @@ export default function Body() {
                   control={<Checkbox />}
                   label={
                     <Box component="div" sx={styleForCheckBtn}>
-                      松山區
+                      大同區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      士林區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+              </FormGroup>
+              <FormGroup sx={styleForFormGourp}>
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      文山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      中正區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      中山區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+              </FormGroup>
+              <FormGroup sx={styleForFormGourp}>
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      內湖區
+                    </Box>
+                  }
+                  sx={formControlLabel}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label={
+                    <Box component="div" sx={styleForCheckBtn}>
+                      北投區
                     </Box>
                   }
                   sx={formControlLabel}
@@ -207,7 +277,7 @@ export default function Body() {
                   control={<Checkbox />}
                   label={
                     <Box component="div" sx={styleForCheckBtn}>
-                      松山區
+                      南港區
                     </Box>
                   }
                   sx={formControlLabel}
@@ -216,7 +286,7 @@ export default function Body() {
                   control={<Checkbox />}
                   label={
                     <Box component="div" sx={styleForCheckBtn}>
-                      松山區
+                      萬華區
                     </Box>
                   }
                   sx={formControlLabel}
@@ -225,65 +295,7 @@ export default function Body() {
                   control={<Checkbox />}
                   label={
                     <Box component="div" sx={styleForCheckBtn}>
-                      松山區
-                    </Box>
-                  }
-                  sx={formControlLabel}
-                />
-              </FormGroup>
-              <FormGroup sx={styleForFormGourp}>
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label={
-                    <Box component="div" sx={styleForCheckBtn}>
-                      松山區
-                    </Box>
-                  }
-                  sx={formControlLabel}
-                />
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label={
-                    <Box component="div" sx={styleForCheckBtn}>
-                      松山區
-                    </Box>
-                  }
-                  sx={formControlLabel}
-                />
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label={
-                    <Box component="div" sx={styleForCheckBtn}>
-                      松山區
-                    </Box>
-                  }
-                  sx={formControlLabel}
-                />
-              </FormGroup>
-              <FormGroup sx={styleForFormGourp}>
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label={
-                    <Box component="div" sx={styleForCheckBtn}>
-                      松山區
-                    </Box>
-                  }
-                  sx={formControlLabel}
-                />
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label={
-                    <Box component="div" sx={styleForCheckBtn}>
-                      松山區
-                    </Box>
-                  }
-                  sx={formControlLabel}
-                />
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label={
-                    <Box component="div" sx={styleForCheckBtn}>
-                      松山區
+                      信義區
                     </Box>
                   }
                   sx={formControlLabel}
@@ -301,6 +313,7 @@ export default function Body() {
             ></Image>
           </div>
         </div>
+        {/* table */}
         <div className={styles.tableContainer}>
           <div className={styles.tableHead}>
             <div>縣市</div>
